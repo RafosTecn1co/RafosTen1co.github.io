@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva Navideña</title>
+    <style>
+        /* Estilos generales */
+        body {
+            background-color: red; /* Fondo rojo */
+            color: white; /* Texto blanco */
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Estilo de la cuenta regresiva */
+        .countdown {
+            font-size: 50px;
+            font-weight: bold;
+            font-style: italic; /* Fuente en cursiva */
+            margin-top: 50px;
+        }
+
+        /* Estilo de las imágenes */
+        .images {
+            margin-top: 30px;
+        }
+
+        .images img {
+            margin: 10px;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        /* Reproductor de música */
+        audio {
+            margin-top: 20px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cuenta Regresiva para Navidad</h1>
+
+    <!-- Cuenta regresiva -->
+    <div class="countdown" id="countdown">
+        10:00
+    </div>
+
+    <!-- Imágenes navideñas -->
+    <div class="images">
+        <img src="https://via.placeholder.com/200x200.png?text=Navidad+1" alt="Imagen Navidad 1">
+        <img src="https://via.placeholder.com/200x200.png?text=Navidad+2" alt="Imagen Navidad 2">
+        <img src="https://via.placeholder.com/200x200.png?text=Navidad+3" alt="Imagen Navidad 3">
+    </div>
+
+    <!-- Reproductor de música (Santa Claus llegó a la ciudad) -->
+    <audio controls autoplay loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        // Establecer la fecha de Navidad (Nochebuena: 25 de diciembre de 2024)
+        var countdownDate = new Date("Dec 25, 2024 00:00:00").getTime();
+
+        // Actualizar la cuenta regresiva cada segundo
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            // Cálculo de días, horas, minutos y segundos
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar la cuenta regresiva
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Si la cuenta regresiva llega a 0, mostrar mensaje de Navidad
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "¡Feliz Navidad!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>

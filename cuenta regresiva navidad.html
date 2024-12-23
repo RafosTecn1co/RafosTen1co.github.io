@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cuenta Regresiva Navideña</title>
+    <style>
+        /* Fondo con degradado de rojo (y sin fondo repetido) */
+        body {
+            background: linear-gradient(to bottom right, #ff0000, #ffae00);
+
+            color: white; /* Texto blanco */
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            font-size: 22px; /* Aumentar el tamaño de la fuente en toda la página */
+            margin: 0; /* Eliminar márgenes predeterminados del body */
+            padding: 0; /* Eliminar el padding predeterminado del body */
+            height: 100vh; /* Asegurarse de que el fondo cubra toda la altura de la ventana */
+        }
+
+
+        /* Estilo de la cuenta regresiva */
+        .countdown {
+            font-size: 79px;
+            font-weight: bold;
+            font-style: italic; /* Fuente en cursiva */
+            margin-top: 79px;
+        }
+
+        /* Estilo de las imágenes */
+        .images {
+            margin-top: 30px;
+        }
+
+        .images img {
+            margin: 10px;
+            height: 200px;
+            border-radius: 10px;
+        }
+
+        /* Reproductor de música */
+        audio {
+            margin-top: 20px;
+            width: 300px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Cuenta Regresiva para Navidad</h1>
+
+    <!-- Cuenta regresiva -->
+    <div class="countdown" id="countdown">
+        10:00
+    </div>
+
+    <!-- Imágenes navideñas -->
+    <div class="images">
+        <img src="file:///C:/Users/ryzen/Documents/project/files/imagenes/1.png" alt="Imagen Navidad 1">
+        <img src="file:///C:/Users/ryzen/Documents/project/files/imagenes/2.png" alt="Imagen Navidad 2">
+    </div>
+
+    <!-- Reproductor de música (Santa Claus llegó a la ciudad) -->
+    <audio controls autoplay loop>
+        <source src="file:///C:/Users/ryzen/Documents/project/files/audio/Luis%20Miguel%20-%20Santa%20Claus%20Llego%20A%20La%20Ciudad%20(Official%20Music%20Video)%20(1).mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <script>
+        // Establecer la fecha de Navidad (Nochebuena: 25 de diciembre de 2024)
+        var countdownDate = new Date("Dec 25, 2024 00:00:00").getTime();
+
+        // Actualizar la cuenta regresiva cada segundo
+        var x = setInterval(function() {
+            var now = new Date().getTime();
+            var distance = countdownDate - now;
+
+            // Cálculo de días, horas, minutos y segundos
+            var days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            // Mostrar la cuenta regresiva
+            document.getElementById("countdown").innerHTML = days + "d " + hours + "h " + minutes + "m " + seconds + "s ";
+
+            // Si la cuenta regresiva llega a 0, mostrar mensaje de Navidad
+            if (distance < 0) {
+                clearInterval(x);
+                document.getElementById("countdown").innerHTML = "¡Feliz Navidad!";
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
